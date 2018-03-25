@@ -2,23 +2,86 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="styles.css">
     <title>Soham's Wacky Journey</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-
+    <h1>SOHAM'S WACKY JOURNEY</h1>
+    <div id="container">
+        <img v-bind:src="'Images/' + curPage + '.jpg'" id="resize" onerror="this.style.display='none'" />
+        <div class="nav">
+            <span class="looklink" v-if="!firstPage" v-on:click="decPage()">Previous</span>
+            &nbsp;&nbsp;
+            <span class="looklink" v-if="!finalPage" v-on:click="incPage()"> Next</span>
+            <br /> <br />
+            Go to page: <input placeholder="Page#" type="number" style="width: 60px" v-model="curPage" v-on:input="correct" />
+        </div>
+    </div>
 </body>
 </html>
 
-<link rel="stylesheet" href="/html/styles.css">
+<script src="Scripts/vue.js"></script>
 <script>
     var app = new Vue({
         el: "#container",
         data: {
-
+            curPage: 0,
+            finalPage: false,
+            firstPage: true,
+            displayAll: false,
         },
         methods: {
+            openPage: function () {
+                this.displayAll = true;
+                this.fixWidth();
+            },
+            fixWidth: function () {
+                if (screen.width <= 400) {
+                    document.getElementById("resize").style.width = "100%";
+                }
+                else {
+                    document.getElementById("resize").style.maxWidth = "1000px";
+                }
+            },
+            incPage: function () {
 
+                this.curPage++;
+                this.firstPage = false;
+                scroll(0, 0);
+                if (this.curPage > 24) {
+                    this.finalPage = true;
+                    this.curPage = 24;
+                }
+            },
+            decPage: function () {
+
+                this.curPage--;
+                this.finalPage = false;
+                scroll(0, 0);
+                if (this.curPage < 0) {
+                    this.firstPage = true;
+                    this.curPage = 0;
+                }
+            },
+            correct: function () {
+                document.getElementById("resize").style.display = "block";
+                document.getElementById("resize").style.textAlign = "center";
+                if (this.curPage > 24) {
+                    this.curPage = 24;
+                }
+                if (this.curPage < 0) {
+                    this.curPage = 0;
+                }
+
+                if (this.curPage != 0) {
+                    this.firstPage = false;
+                }
+
+                if (this.curPage != 24) {
+                    this.finalPage = false;
+                }
+            }
         }
     })
 </script>
