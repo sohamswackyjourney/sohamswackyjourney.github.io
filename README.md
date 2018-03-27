@@ -1,1 +1,0 @@
-sohamswackyjourney.github.io

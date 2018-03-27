@@ -1,0 +1,46 @@
+﻿h1 {
+    color: red;
+    text-shadow: 3px 3px black;
+    /*-webkit-text-fill-color: red; /* Will override color (regardless of order) 
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;*/
+    font-family: Arial;
+    font-size: 55px;
+    font-weight: bolder;
+}
+
+body {
+    text-align: center;
+    background-image: url('Images/25.jpg');
+    background-repeat: repeat;
+}
+
+img {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.looklink {
+    text-decoration: underline;
+    color: blue;
+}
+
+.looklink:hover{
+    cursor: pointer;
+}
+img:hover{
+cursor: pointer;}
+
+#nav{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    background-color: white;
+    width: 20%;
+}
+
+#container{
+    text-align: center;
+}
