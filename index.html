@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="sohamico.ico">
+    <meta charset="utf-8" />
+    <title>Soham's Wacky Journey</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>SOHAM'S WACKY JOURNEY</h1>
+    <div id="container">
+        <img v-bind:src="'Images/' + curPage + '.jpg'" id="resize" onerror="this.style.display='none'" v-on:click="incPage()" />
+        <div id="nav">
+            <span class="looklink" v-if="!firstPage" v-on:click="decPage()">Previous</span>
+            &nbsp;&nbsp;
+            <span class="looklink" v-if="!finalPage" v-on:click="incPage()"> Next</span> 
+            <br /> <br />
+            Go to page: <input type="number" style="width: 40px; text-align: center;" v-model="curPage" v-on:input="correct" /> / 24
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="Scripts/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#container",
+        mounted: function () {
+            this.fixWidth();
+        },
+        data: {
+            curPage: 0,
+            finalPage: false,
+            firstPage: true,
+            displayAll: false,
+        },
+        methods: {
+            fixWidth: function () {
+                if (screen.width <= 500) {
+                    document.getElementById("resize").style.width = "100%";
+                    document.getElementById("nav").style.width = "100%";
+                }
+                else {
+                    document.getElementById("resize").style.width = "60%";
+                    document.getElementById("nav").style.wiidth = "360px";
+                }
+            },
+            incPage: function () {
+
+                this.curPage++;
+                this.firstPage = false;
+                if (this.curPage > 24) {
+                    this.finalPage = true;
+                    this.curPage = 24;
+                }
+            },
+            decPage: function () {
+
+                this.curPage--;
+                this.finalPage = false;
+                if (this.curPage < 0) {
+                    this.firstPage = true;
+                    this.curPage = 0;
+                }
+            },
+            correct: function () {
+                if (this.curPage.length > 1 && this.curPage.charAt(0) == '0') {
+                    this.curPage = this.curPage.charAt(1);
+                }
+                document.getElementById("resize").style.display = "block";
+                document.getElementById("resize").style.textAlign = "center";
+                if (this.curPage >= 24) {
+                    this.curPage = 24;
+                    this.finalPage = true;
+                }
+                if (this.curPage <= 0) {
+                    this.curPage = 0;
+                    this.firstPage = true;
+                }
+
+                if (this.curPage != 0) {
+                    this.firstPage = false;
+                }
+
+                if (this.curPage != 24) {
+                    this.finalPage = false;
+                }
+            }
+        }
+    })
+</script>
