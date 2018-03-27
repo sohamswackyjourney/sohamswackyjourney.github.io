@@ -1,22 +1,22 @@
 ﻿h1 {
     color: red;
-    -webkit-text-fill-color: red; /* Will override color (regardless of order) */
+    text-shadow: 3px 3px black;
+    /*-webkit-text-fill-color: red; /* Will override color (regardless of order) 
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: black;*/
     font-family: Arial;
-    font-size: 50px;
+    font-size: 55px;
     font-weight: bolder;
 }
 
 body {
     text-align: center;
-    background-image: url('Images/Soham.jpg');
+    background-image: url('Images/25.jpg');
     background-repeat: repeat;
 }
 
 img {
     margin-bottom: 20px;
-    width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -29,14 +29,16 @@ img {
 .looklink:hover{
     cursor: pointer;
 }
+img:hover{
+cursor: pointer;}
 
-.nav{
+#nav{
     margin-left: auto;
     margin-right: auto;
     padding: 10px 10px 10px 10px;
     text-align: center;
     background-color: white;
-    width: 360px;
+    width: 20%;
 }
 
 #container{
